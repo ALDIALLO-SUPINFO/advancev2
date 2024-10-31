@@ -17,6 +17,11 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://votre-app.vercel.app'],
+    credentials: true
+  }));
+  
 app.use(passport.initialize());
 app.use(passport.session());
 
