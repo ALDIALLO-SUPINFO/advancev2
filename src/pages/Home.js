@@ -234,10 +234,10 @@ export default function LandingPage() {
           <span className="text-white">AdVance v2 est disponible</span>
         </div>
         <h1 className="text-7xl font-bold mb-8 leading-tight">
-          Lancez vos produits gagnants en{' '}
+        Révolutionnez votre façon de vendre{' '}
           <span className="relative inline-block">
             <span className="relative z-10 bg-gradient-to-r from-pink-400 to-blue-400 bg-clip-text text-transparent">
-              3 clics
+            en ligne
             </span>
             <div className="absolute -bottom-2 left-0 right-0 h-4 bg-gradient-to-r from-pink-500/20 to-blue-500/20 -rotate-2 rounded"/>
           </span>
