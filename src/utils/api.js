@@ -1,26 +1,24 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api'
-});
-
-// Intercepteur pour ajouter le token à chaque requête
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000',
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json'
   }
-  return config;
 });
 
-export const login = async (credentials) => {
-  const response = await api.post('/login', credentials);
-  return response.data;
-};
-
-export const getUserProfile = async () => {
-  const response = await api.get('/user/profile');
-  return response.data;
-};
+// Intercepteur pour gérer les erreurs
+api.interceptors.response.use(
+  response => response,
+  error => {
+    console.error('API Error:', error);
+    if (error.response?.status === 401) {
+      // Rediriger vers login si non authentifié
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;
