@@ -72,7 +72,7 @@ function Header() {
   return (
     <HeaderContainer>
       <LeftSection>
-        <Logo>MineaClone</Logo>
+        <Logo>AdVance</Logo>
         <NavLinks>
           <NavLink to="/">Prix</NavLink>
           <NavLink to="/faq">FAQ</NavLink>

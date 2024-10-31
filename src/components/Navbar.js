@@ -94,7 +94,7 @@ const ProfileIcon = styled.div`
 const Navbar = () => {
   return (
     <NavbarContainer>
-      <Logo>Minea</Logo>
+      <Logo>AdVance</Logo>
       <NavLinks>
         <NavLink to="/annonces">Annonces</NavLink>
         <NavLink to="/boutiques">Boutiques</NavLink>

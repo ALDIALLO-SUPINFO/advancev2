@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import ModernFooter from './ModernFooter';
 
 const CheckIcon = () => (
   <svg 
@@ -375,13 +376,84 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+      <ModernFooter />
 
       {/* Footer */}
-      <footer className="py-12 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 text-center text-white/60">
-          <p>© 2024 AdVance. Tous droits réservés</p>
+     {/* Footer */}
+{/* <footer className="py-12 border-t border-white/10">
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <h3 className="text-white font-semibold mb-4">AdVance</h3>
+        <p className="text-white/60">
+          Solution tout-en-un pour votre succès en e-commerce
+        </p>
+      </div>
+      
+      <div>
+        <h3 className="text-white font-semibold mb-4">Légal</h3>
+        <ul className="space-y-2">
+          <li>
+            <a href="/privacy" className="text-white/60 hover:text-white">
+              Politique de confidentialité
+            </a>
+          </li>
+          <li>
+            <a href="/terms" className="text-white/60 hover:text-white">
+              Conditions générales
+            </a>
+          </li>
+          <li>
+            <a href="/cookies" className="text-white/60 hover:text-white">
+              Politique des cookies
+            </a>
+          </li>
+          <li>
+            <a href="/mentions-legales" className="text-white/60 hover:text-white">
+              Mentions légales
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="text-white font-semibold mb-4">Contact</h3>
+        <ul className="space-y-2">
+          <li>
+            <a href="mailto:contact@advance.com" className="text-white/60 hover:text-white">
+              contact@advance.com
+            </a>
+          </li>
+          <li className="text-white/60">
+            42 rue de l'Innovation
+          </li>
+          <li className="text-white/60">
+            75001 Paris, France
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="text-white font-semibold mb-4">Suivez-nous</h3>
+        <div className="flex space-x-4">
+          <a href="#" className="text-white/60 hover:text-white">
+            Twitter
+          </a>
+          <a href="#" className="text-white/60 hover:text-white">
+            LinkedIn
+          </a>
+          <a href="#" className="text-white/60 hover:text-white">
+            Instagram
+          </a>
         </div>
-      </footer>
+      </div>
+    </div>
+
+    <div className="pt-8 border-t border-white/10 text-center text-white/60">
+      <p>© 2024 AdVance. Tous droits réservés</p>
+    </div>
+  </div>
+</footer> */}
     </div>
   );
 }

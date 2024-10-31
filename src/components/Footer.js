@@ -13,7 +13,7 @@ const FooterContainer = styled.footer`
 function Footer() {
   return (
     <FooterContainer>
-      © 2024 MineaClone. Tous droits réservés | <a href="/privacy">Politique de Confidentialité</a>
+      © 2024 AdVance. Tous droits réservés | <a href="/privacy">Politique de Confidentialité</a>
     </FooterContainer>
   );
 }

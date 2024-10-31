@@ -7,7 +7,7 @@ import FAQ from './pages/FAQ';
 import LoginPage from './pages/Login';
 import SignupPage from './pages/Signup';
 import Dashboard from './pages/Dashboard';
-
+import PrivacyPolicy from './pages/PrivacyPolicy';
 // Création du contexte d'authentification
 const AuthContext = createContext(null);
 
@@ -99,6 +99,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
           
           {/* Routes protégées */}
           <Route 

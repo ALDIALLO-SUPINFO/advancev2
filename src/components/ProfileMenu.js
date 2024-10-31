@@ -44,7 +44,7 @@ const ProfileMenu = () => {
           return;
         }
 
-        const response = await axios.get('http://localhost:5000/api/user/profile', {
+        const response = await axios.get('https://advancev2.onrender.com/api/user/profile', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUserData(response.data);
@@ -118,7 +118,7 @@ const ProfileMenu = () => {
 
             {/* Club & Logout */}
             <div className="p-1 border-t border-white/10">
-              <MenuItem to="/club" icon="👥">Minea Club</MenuItem>
+              <MenuItem to="/club" icon="👥">AdVance Club</MenuItem>
               <MenuItem 
                 onClick={handleLogout}
                 icon="🚪"
