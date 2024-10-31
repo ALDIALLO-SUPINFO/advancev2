@@ -4,28 +4,61 @@ import axios from 'axios';
 import { useAuth } from '../App'; // Importez le hook useAuth
 import { login } from '../utils/api';
 
+const API_URL = 'https://advancev2.onrender.com'; // URL de production
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
- 
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setIsLoading(true);
 
     try {
-      const response = await login({ email, password });
-      if (response.success) {
-          navigate('/dashboard');
+      const response = await axios.post(`${API_URL}/api/login`, 
+        { email, password },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          withCredentials: true
+        }
+      );
+
+      if (response.data.success) {
+        // Stockage du token
+        localStorage.setItem('token', response.data.token);
+        
+        // Mise à jour du contexte d'authentification
+        await login(response.data.token, response.data.user);
+        
+        // Redirection
+        navigate('/dashboard');
       } else {
-          setError(response.message);
+        setError(response.data.message || 'Identifiants incorrects');
       }
     } catch (error) {
-      setError('Problème de connexion au serveur');
+      console.error('Erreur de connexion:', error);
+      if (error.response) {
+        // Erreur avec réponse du serveur
+        setError(error.response.data.message || 'Erreur de connexion');
+      } else if (error.request) {
+        // Erreur sans réponse du serveur
+        setError('Impossible de contacter le serveur. Veuillez réessayer.');
+      } else {
+        // Autre type d'erreur
+        setError('Une erreur est survenue. Veuillez réessayer.');
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-violet-900 to-blue-900 flex items-center justify-center p-4">
