@@ -2,27 +2,29 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../App'; // Importez le hook useAuth
-import { login } from '../utils/api.js'
+import { login } from '../utils/api';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+ 
 
   const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-          const response = await login({ email, password });
-          if (response.success) {
-              navigate('/dashboard');
-          } else {
-              setError(response.message);
-          }
-      } catch (error) {
-          setError('Erreur de connexion');
-          console.error('Erreur:', error);
+    e.preventDefault();
+    setError('');
+
+    try {
+      const response = await login({ email, password });
+      if (response.success) {
+          navigate('/dashboard');
+      } else {
+          setError(response.message);
       }
+    } catch (error) {
+      setError('Problème de connexion au serveur');
+    }
   };
 
   return (
