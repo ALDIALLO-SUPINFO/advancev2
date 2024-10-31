@@ -1,24 +1,35 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000',
-  withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json'
-  }
+    baseURL: process.env.REACT_APP_API_URL,
+    withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json'
+    }
 });
 
-// Intercepteur pour gérer les erreurs
-api.interceptors.response.use(
-  response => response,
-  error => {
-    console.error('API Error:', error);
-    if (error.response?.status === 401) {
-      // Rediriger vers login si non authentifié
-      window.location.href = '/login';
+export const login = async (credentials) => {
+    try {
+        const response = await api.post('/api/login', credentials);
+        if (response.data.token) {
+            localStorage.setItem('token', response.data.token);
+        }
+        return response.data;
+    } catch (error) {
+        throw error;
     }
-    return Promise.reject(error);
-  }
-);
+};
+
+export const signup = async (userData) => {
+    try {
+        const response = await api.post('/api/signup', userData);
+        if (response.data.token) {
+            localStorage.setItem('token', response.data.token);
+        }
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+};
 
 export default api;

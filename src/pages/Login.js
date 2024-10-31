@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../App'; // Importez le hook useAuth
-import { login } from '../services/api';
+import { login } from '../utils/api.js'
 
 const Login = () => {
   const [email, setEmail] = useState('');
