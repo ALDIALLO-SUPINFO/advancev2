@@ -18,7 +18,7 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://votre-app.vercel.app'],
+    origin: ['http://localhost:3000', 'https://advancev2-ezmp.vercel.app'],
     credentials: true
   }));
   
