@@ -80,6 +80,7 @@ function Header() {
         </NavLinks>
       </LeftSection>
       <AuthLinks>
+        
         <LoginButton to="/login">Se connecter</LoginButton>
       </AuthLinks>
     </HeaderContainer>
