@@ -1,83 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { 
+  ShoppingCart, 
+  Package, 
+  TrendingUp, 
+  DollarSign,
+  MousePointer2,
+  Linkedin,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  Globe,
+  ArrowUpRight
+} from 'lucide-react';
 
-import { useNavigate } from 'react-router-dom';
-
-// Les composants d'icônes SVG restent les mêmes...
-// [Les composants IconTwitter, IconLinkedin, etc. sont identiques au code précédent]
-
-
+const FloatingElement = ({ Icon, className }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   
-
-
-
-
-
-
-
-
-
-
-
-// Composants d'icônes SVG inline
-const IconTwitter = () => (
-  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" strokeWidth="2">
-    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
-  </svg>
-);
-
-const IconLinkedin = () => (
-  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" strokeWidth="2">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-const IconInstagram = () => (
-  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" strokeWidth="2">
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-  </svg>
-);
-
-const IconMail = () => (
-  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" strokeWidth="2">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-    <polyline points="22,6 12,13 2,6" />
-  </svg>
-);
-
-const IconMap = () => (
-  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" strokeWidth="2">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-    <circle cx="12" cy="10" r="3" />
-  </svg>
-);
-
-const IconPhone = () => (
-  <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" strokeWidth="2">
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-  </svg>
-);
-
-const IconArrow = () => (
-  <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" strokeWidth="2">
-    <line x1="7" y1="17" x2="17" y2="7" />
-    <polyline points="7 7 17 7 17 17" />
-  </svg>
-);
-
-const IconGlobe = () => (
-  <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" strokeWidth="2">
-    <circle cx="12" cy="12" r="10" />
-    <line x1="2" y1="12" x2="22" y2="12" />
-    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-  </svg>
-);
+  useEffect(() => {
+    const randomX = Math.random() * 100;
+    const randomY = Math.random() * 100;
+    setPosition({ x: randomX, y: randomY });
+    
+    const interval = setInterval(() => {
+      setPosition(prev => ({
+        x: (prev.x + Math.random() * 2 - 1) % 100,
+        y: (prev.y + Math.random() * 2 - 1) % 100
+      }));
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, []);
+  
+  return (
+    <div 
+      className={`absolute transition-all duration-3000 ease-in-out ${className}`}
+      style={{
+        left: `${position.x}%`,
+        top: `${position.y}%`,
+        transform: `translate(-50%, -50%) rotate(${Math.random() * 360}deg)`
+      }}
+    >
+      <Icon strokeWidth={1.5} className="text-white/10" />
+    </div>
+  );
+};
 
 const ModernFooter = () => {
-    const navigate = useNavigate();
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMousePosition({
+        x: (e.clientX - rect.left) / rect.width,
+        y: (e.clientY - rect.top) / rect.height
+      });
+    };
 
     const legalPages = [
         { title: 'Confidentialité', path: '/privacy' },
@@ -91,24 +69,51 @@ const ModernFooter = () => {
     };
 
     return (
-        <footer className="relative pt-16 sm:pt-24 md:pt-32 pb-8 sm:pb-12 md:pb-16 overflow-hidden">
-            {/* Background avec meilleure adaptation mobile */}
+        <footer 
+            className="relative pt-16 sm:pt-24 md:pt-32 pb-8 sm:pb-12 md:pb-16 overflow-hidden"
+            onMouseMove={handleMouseMove}
+        >
+            {/* Background amélioré avec animations */}
             <div className="absolute inset-0 -z-10">
+                {/* Dégradé de base */}
                 <div className="absolute inset-0 bg-gradient-to-b from-violet-950/50 to-blue-950"/>
+                
+                {/* Grille animée */}
                 <div 
-                    className="absolute inset-0"
+                    className="absolute inset-0 animate-pulse"
                     style={{
                         backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                        backgroundSize: '24px 24px'
+                        backgroundSize: '32px 32px',
+                        transform: `rotate(${mousePosition.x * 5}deg)`
                     }}
                 />
-                <div className="absolute top-0 left-1/4 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-pink-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"/>
-                <div className="absolute bottom-0 right-1/4 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"/>
+
+                {/* Cercles lumineux animés */}
+                <div 
+                    className="absolute top-0 left-1/4 w-96 h-96 bg-pink-500/20 rounded-full mix-blend-multiply filter blur-3xl"
+                    style={{
+                        transform: `translate(${mousePosition.x * 20}px, ${mousePosition.y * 20}px)`,
+                        transition: 'transform 0.3s ease-out'
+                    }}
+                />
+                <div 
+                    className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-3xl"
+                    style={{
+                        transform: `translate(${-mousePosition.x * 20}px, ${-mousePosition.y * 20}px)`,
+                        transition: 'transform 0.3s ease-out'
+                    }}
+                />
+
+                {/* Éléments flottants e-commerce */}
+                <FloatingElement Icon={ShoppingCart} className="animate-bounce" />
+                <FloatingElement Icon={Package} className="animate-pulse" />
+                <FloatingElement Icon={TrendingUp} className="animate-bounce" />
+                <FloatingElement Icon={DollarSign} className="animate-pulse" />
+                <FloatingElement Icon={MousePointer2} className="animate-bounce" />
             </div>
 
-            {/* Contenu principal avec meilleure structure responsive */}
+            {/* Contenu principal */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Grille responsive améliorée */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 sm:gap-8 lg:gap-12 mb-16 sm:mb-20 md:mb-24">
                     {/* Colonne marque */}
                     <div className="space-y-6 sm:space-y-8">
@@ -119,14 +124,13 @@ const ModernFooter = () => {
                             Propulsez votre e-commerce vers de nouveaux sommets avec notre solution tout-en-un.
                         </p>
                         <div className="flex items-center gap-3 sm:gap-4">
-                            {/* Icônes sociales plus adaptatives */}
-                            {[IconTwitter, IconLinkedin, IconInstagram].map((Icon, index) => (
+                            {[Linkedin, Instagram].map((Icon, index) => (
                                 <a 
                                     key={index}
                                     href="#" 
                                     className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-all"
                                 >
-                                    <Icon />
+                                    <Icon size={18} />
                                 </a>
                             ))}
                         </div>
@@ -140,7 +144,7 @@ const ModernFooter = () => {
                                 <li key={item}>
                                     <a href="#" className="group flex items-center text-sm sm:text-base text-white/70 hover:text-white transition-colors">
                                         <span>{item}</span>
-                                        <IconArrow className="ml-1 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                                        <ArrowUpRight className="ml-1 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" size={14} />
                                     </a>
                                 </li>
                             ))}
@@ -153,13 +157,13 @@ const ModernFooter = () => {
                         <ul className="space-y-3 sm:space-y-4">
                             {legalPages.map((page) => (
                                 <li key={page.title}>
-                                    <button
-                                        onClick={() => navigate(page.path)}
+                                    <a
+                                        href={page.path}
                                         className="group flex items-center text-sm sm:text-base text-white/70 hover:text-white transition-colors"
                                     >
                                         <span>{page.title}</span>
-                                        <IconArrow className="ml-1 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
-                                    </button>
+                                        <ArrowUpRight className="ml-1 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" size={14} />
+                                    </a>
                                 </li>
                             ))}
                         </ul>
@@ -174,26 +178,26 @@ const ModernFooter = () => {
                                     onClick={handleEmailClick}
                                     className="group flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-white/70 hover:text-white transition-colors"
                                 >
-                                    <IconMail />
+                                    <Mail size={18} />
                                     <span>contact@advance.com</span>
                                 </button>
                             </li>
                             <li className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-white/70">
-                                <IconMap />
+                                <MapPin size={18} />
                                 <span>42 rue de l'Innovation<br/>75001 Paris, France</span>
                             </li>
                             <li className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-white/70">
-                                <IconPhone />
+                                <Phone size={18} />
                                 <span>+33 O6O6O6O6O6</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                {/* Section newsletter responsive */}
-                <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-blue-500/10 rounded-xl sm:rounded-2xl -z-10" />
-                    <div className="p-6 sm:p-8 md:p-12 rounded-xl sm:rounded-2xl border border-white/10 backdrop-blur-sm">
+                {/* Section newsletter avec animation au hover */}
+                <div className="relative group">
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-blue-500/10 rounded-xl sm:rounded-2xl -z-10 group-hover:from-pink-500/20 group-hover:to-blue-500/20 transition-all duration-500" />
+                    <div className="p-6 sm:p-8 md:p-12 rounded-xl sm:rounded-2xl border border-white/10 backdrop-blur-sm group-hover:border-white/20 transition-all duration-500">
                         <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
                             <div className="text-center md:text-left">
                                 <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
@@ -217,14 +221,14 @@ const ModernFooter = () => {
                     </div>
                 </div>
 
-                {/* Barre de bas de page responsive */}
+                {/* Barre de bas de page */}
                 <div className="mt-16 sm:mt-20 md:mt-24 pt-6 sm:pt-8 border-t border-white/10">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <p className="text-xs sm:text-sm text-white/60 text-center sm:text-left">
                             © 2024 AdVance. Tous droits réservés
                         </p>
                         <div className="flex items-center gap-2 text-xs sm:text-sm text-white/60">
-                            <IconGlobe />
+                            <Globe size={14} />
                             <span>France</span>
                             <span className="mx-2">|</span>
                             <select className="bg-transparent text-white/60 hover:text-white focus:outline-none cursor-pointer text-xs sm:text-sm">

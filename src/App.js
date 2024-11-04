@@ -1,13 +1,16 @@
+//App.js
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 
 // Import des pages
 import Home from './pages/Home';
 import FAQ from './pages/FAQ';
-import LoginPage from './pages/Login';
+import UnifiedLogin from './pages/UnifiedLogin';
 import SignupPage from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+
 // Création du contexte d'authentification
 const AuthContext = createContext(null);
 
@@ -25,7 +28,7 @@ const AuthProvider = ({ children }) => {
         const token = localStorage.getItem('token');
         if (token) {
           // Vérifier la validité du token avec le backend
-          const response = await fetch('http://localhost:5000/api/user/profile', {
+          const response = await fetch('https://advancev2.onrender.com/api/user/profile', {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -96,7 +99,7 @@ function App() {
         <Routes>
           {/* Routes publiques */}
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={<UnifiedLogin />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />

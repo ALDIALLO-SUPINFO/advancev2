@@ -1,3 +1,5 @@
+//Signup.js
+
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -153,7 +155,7 @@ const SignupPage = () => {
             {/* Bouton Google compact */}
             <button
               type="button"
-              onClick={() => window.location.href = 'http://localhost:5000/api/auth/google'}
+              onClick={() => window.location.href = 'https://advancev2.onrender.com/api/auth/google'}
               className="w-full h-8 bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.05] text-white/90 rounded-lg text-xs font-medium transition-all flex items-center justify-center gap-2 group"
             >
               <svg className="w-3 h-3 text-white/70 group-hover:text-white transition-colors" viewBox="0 0 24 24" fill="currentColor">
