@@ -96,7 +96,7 @@ const Navbar = () => {
     <NavbarContainer>
       <Logo>AdVance</Logo>
       <NavLinks>
-        <NavLink to="/annonces">Annonces</NavLink>
+        <NavLink to="/campaigns">Campagnes Publicitaires</NavLink>
         <NavLink to="/boutiques">Boutiques</NavLink>
         <NavLink to="/produits">
           Produits<NewBadge>NEW</NewBadge>
